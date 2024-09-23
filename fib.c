@@ -15,9 +15,9 @@ void init_memo() {
 unsigned long long int recursive(unsigned long long int n) {
    if (n <= 1) {
       return n;
+   } else {
+      return recursive(n - 1) + recursive(n - 2);   
    }
-
-   return recursive(n - 1) + recursive(n - 2);   
 }
 
 unsigned long long int recur_memo(unsigned long long int n) {
@@ -46,6 +46,7 @@ unsigned long long int iterative(unsigned long long int n) {
         b = fib;
       }
     return memo[fib];
+    return fib;
 }
 
 unsigned long long int iter_memo(unsigned long long int n) {
@@ -79,9 +80,9 @@ int main(unsigned long long int argc, char *argv[]) {
    init_memo();
    char *method = argv[2];
    
-   if (number == 1) {
-      number = number - 1;
-   }
+   // if (number == 1) {
+   //   number = number - 1;
+   // }
 
    // Debugging
    // printf("%d\n", number);
@@ -90,8 +91,10 @@ int main(unsigned long long int argc, char *argv[]) {
    unsigned long long int results;
 
    if (strcmp(method, "r")  == 0) {
+      // results = recursive(number);
       results = recur_memo(number);
    } else if (strcmp(method, "i")  == 0) {
+      // results = iterative(number);
       results = iter_memo(number);
    } else {
       printf("Use 'r' for recursive or 'i' for iterative.\n");
